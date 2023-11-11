@@ -1,15 +1,44 @@
 name: Run MATLAB Build on GitHub-Hosted Runner
-on: [push]
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+      - 'c*'
+      
+permissions:
+    contents: write
+    
 jobs:
   my-job:
     name: Run MATLAB Build
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        
       - name: Set up MATLAB
         uses: matlab-actions/setup-matlab@v1
-      - name: Run build
-        uses: matlab-actions/run-build@v1
+
+      - run: |
+          mkdir -pv ./installation && \
+          matlab -batch "codegen myadd -d ./installation -c -args {zeros(1, 1), zeros(1, 1)}"
+      
+      # - name: Run build
+      #   uses: matlab-actions/run-build@v1
+      #   with:
+      #     tasks: sum.m
+      
+      - name: Archive Release
+        uses: thedoctor0/zip-release@master
         with:
-          tasks: sum.m
+          type: 'zip'
+          directory: "installation"
+          filename: "myadd-${{ github.ref_name }}.zip"
+        
+      - name: Release prebuilt
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "installation/myadd-${{ github.ref_name }}.zip"
+          allowUpdates: true
+          token: ${{ secrets.GITHUB_TOKEN }}
