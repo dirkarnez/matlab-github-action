@@ -13,13 +13,18 @@ jobs:
   my-job:
     name: Run MATLAB Build
     runs-on: ubuntu-latest
+    env:
+      MLM_LICENSE_TOKEN: ${{ secrets.MyToken }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
         
       - name: Set up MATLAB
-        uses: matlab-actions/setup-matlab@v1
+        uses: matlab-actions/setup-matlab@v4
 
+      # Add the %#codegen directive to averagingFilterCG to prompt the MATLAB Code Analyzer to identify warnings and errors specific to code generation. For code generation, input variable types must be defined. Specify the input as an unbounded vector of doubles using an arguments block.
+      # codegen -config:lib -lang:c++ averagingFilterCG
+      # codegen -config:lib averagingFilterCG
       - run: |
           mkdir -pv ./installation && \
           matlab -batch "codegen myadd -d ./installation -c -args {zeros(1, 1), zeros(1, 1)}"
