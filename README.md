@@ -5,6 +5,7 @@ matlab-github-action
 - https://github.com/matlab-actions/setup-matlab#use-matlab-batch-licensing-token
 - https://github.com/mathworks-ref-arch/matlab-dockerfile/blob/main/alternates/non-interactive/MATLAB-BATCH.md#matlab-batch-licensing-token
 - https://ww2.mathworks.cn/help/coder/ref/codegen.html
+- [Action for Running MATLAB Commands | run-command](https://braverclient.github.io/run-command/)
   
 ### Notes
 - Application is needed for batch licensing token
