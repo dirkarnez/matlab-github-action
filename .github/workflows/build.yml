@@ -27,7 +27,7 @@ jobs:
       # codegen -config:lib averagingFilterCG
       - run: |
           mkdir -pv ./installation && \
-          matlab -batch "codegen myadd -d ./installation -c -args {zeros(1, 1), zeros(1, 1)}"
+          matlab -batch "codegen -config cfg -c myadd -args {zeros(1, 1), zeros(1, 1)} -d ./installation"
       
       # - name: Run build
       #   uses: matlab-actions/run-build@v1
