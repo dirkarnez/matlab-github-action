@@ -39,11 +39,11 @@ jobs:
         with:
           type: 'zip'
           directory: "installation"
-          filename: "myadd-${{ github.ref_name }}.zip"
+          filename: "${{ github.event.repository.name }}-${{ github.ref_name }}.zip"
         
       - name: Release prebuilt
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "installation/myadd-${{ github.ref_name }}.zip"
+          artifacts: "installation/${{ github.event.repository.name }}-${{ github.ref_name }}.zip"
           allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
