@@ -14,11 +14,14 @@ matlab-github-action
 - There are a number of config objects (`coder.CodeConfig` / `coder.EmbeddedCodeConfig` / `coder.GpuConfig` / etc.)
   - [coder.config - Create code generation configuration objects - MATLAB](https://www.mathworks.com/help/coder/ref/coder.config.html)
     - [coder.DeepLearningCodeConfig - Parameters to configure deep learning code generation that does not depend on third-party libraries - MATLAB](https://www.mathworks.com/help/coder/ref/coder.deeplearningcodeconfig.html)
-[PIL Execution with ARM Cortex-A at the Command Line - MATLAB & Simulink](https://www.mathworks.com/help/ecoder/ug/pil-execution-with-arm-cortex-a-from-command-line.html)
 -  `coder.EmbeddedCodeConfig`
   - `cfg = coder.config("lib", 'ecoder', true); cfg.Hardware = coder.hardware('Raspberry Pi (64bit)'); cfg.TargetLang = "C++"; cfg.CustomInclude = {pwd};  cfg.GenCodeOnly = true; cfg.Toolchain = "CMake"; codegen -config cfg myadd -c -args {zeros(1, 4), zeros(1, 4)} -d ./installation`
+    - [PIL Execution with ARM Cortex-A at the Command Line - MATLAB & Simulink](https://www.mathworks.com/help/ecoder/ug/pil-execution-with-arm-cortex-a-from-command-line.html)
 - `coder.GpuConfig`
   - `cfg = coder.gpuConfig("lib"); cfg.TargetLang = "C++"; cfg.CustomInclude = {pwd}; cfg.GpuConfig.Enabled = true; cfg.GenCodeOnly = true; cfg.Toolchain = "CMake"; codegen -config cfg myadd -c -args {zeros(1, 4), zeros(1, 4)} -d ./installation`
+- MISRA
+  - `cfg = coder.config("lib"); cfg.TargetLang = "C++"; cfg.CustomInclude = {pwd}; cfg.GenCodeOnly = true; cfg.Toolchain = "CMake"; coder.setupMISRAConfig(cfg); codegen -config cfg myadd -c -args {zeros(1, 4), zeros(1, 4)} -d ./installation`
+    - [coder.setupMISRAConfig - Configure parameters to improve generated code compliance with MISRA and AUTOSAR guidelines - MATLAB](https://www.mathworks.com/help/ecoder/ref/coder.setupmisraconfig.html)
 - learn GPU-native code
   - [GPU Programming Paradigm - MATLAB & Simulink](https://www.mathworks.com/help/gpucoder/gs/gpu-prog-paradigm.html)
 - MISRA
