@@ -26,8 +26,11 @@ jobs:
       # codegen -config:lib averagingFilterCG
       - shell: cmd
         run: |
-          mkdir ./installation &&^
-          matlab -batch "cfg = coder.config("lib"); cfg.TargetLang = "C++"; cfg.CustomInclude = {pwd}; cfg.GenCodeOnly = true; cfg.Toolchain = "CMake"; codegen -config cfg myadd -c -args {zeros(1, 1), zeros(1, 1)} -d ./installation"
+          md installation
+          
+      - shell: cmd
+        run: |
+          matlab -batch "cfg = coder.config("lib"); cfg.TargetLang = "C++"; cfg.CustomInclude = {pwd}; cfg.GenCodeOnly = true; cfg.Toolchain = "CMake"; codegen -config cfg myadd -c -args {zeros(1, 1), zeros(1, 1)} -d installation"
       
       # - name: Run build
       #   uses: matlab-actions/run-build@v1
