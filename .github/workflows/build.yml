@@ -21,6 +21,10 @@ jobs:
         
       - name: Set up MATLAB
         uses: matlab-actions/setup-matlab@v2
+        with:
+          products: >
+            MATLAB_Coder
+            
       # Add the %#codegen directive to averagingFilterCG to prompt the MATLAB Code Analyzer to identify warnings and errors specific to code generation. For code generation, input variable types must be defined. Specify the input as an unbounded vector of doubles using an arguments block.
       # codegen -config:lib -lang:c++ averagingFilterCG
       # codegen -config:lib averagingFilterCG
