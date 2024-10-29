@@ -8,6 +8,7 @@ matlab-github-action
 - [Action for Running MATLAB Commands | run-command](https://braverclient.github.io/run-command/)
   
 ### Notes
+- MatLab commands must be run by `matlab-actions/run-command@v2` because it will do license authorization for us. run directly with `matlab -batch` is proven to fail
 - Application is needed for batch licensing token
 - type `license` in Matlab calculating console for license number
 - `%#codegen` comment is a must
