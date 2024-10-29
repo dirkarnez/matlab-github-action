@@ -14,7 +14,7 @@ jobs:
     name: Run MATLAB Build
     runs-on: ubuntu-latest
     env:
-      MLM_LICENSE_TOKEN: ${{ secrets.MyToken }}
+      MLM_LICENSE_TOKEN: ${{ secrets.MLM_LICENSE_TOKEN }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
