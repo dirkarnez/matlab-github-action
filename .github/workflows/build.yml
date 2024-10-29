@@ -30,7 +30,7 @@ jobs:
           
       - shell: cmd
         run: |
-          matlab -batch "cfg = coder.config("lib"); cfg.TargetLang = "C++"; cfg.CustomInclude = {pwd}; cfg.GenCodeOnly = true; cfg.Toolchain = "CMake"; codegen -config cfg myadd -c -args {zeros(1, 1), zeros(1, 1)} -d installation"
+          matlab -batch "cfg = coder.config(\"lib\"); cfg.TargetLang = \"C++\"; cfg.GenCodeOnly = true; cfg.Toolchain = \"CMake\"; codegen -config cfg myadd -c -args {zeros(1, 1), zeros(1, 1)} -d installation"
       
       # - name: Run build
       #   uses: matlab-actions/run-build@v1
